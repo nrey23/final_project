@@ -7,11 +7,14 @@ define('DB_NAME', 'railway'); // Railway database name
 define('DB_PORT', 45657); // Railway MySQL port
 
 // Attempt to connect to MySQL database
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
+$link = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
 
 // Check connection
-if (!$link) {
-    error_log("Connection error: " . mysqli_connect_error()); // Log the error
-    die("Unable to connect to the database. Please try again later."); // User-friendly error
+if ($link->connect_error) {
+    error_log("Connection failed: " . $link->connect_error); // Log error for debugging
+    die("Error: Unable to connect to the database. Please try again later."); // User-friendly error
 }
+
+// Optional: Debugging confirmation
+echo "✅ Database connection successful!";
 ?>
