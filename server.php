@@ -1,8 +1,8 @@
 <?php
-// Get Railway-assigned PORT (default to 8080 if not set)
-$port = getenv('PORT') ?: 9000;
+// Get Railway's assigned port or default to 8080
+$port = getenv('PORT') ?: 8080;
 
-// Start built-in PHP server
-echo "🚀 Server running on port $port...\n";
-exec("php -S 0.0.0.0:$port -t .");
+echo "🚀 Starting PHP server on port $port...\n";
+// Start the built-in PHP server
+passthru("php -S 0.0.0.0:$port -t .");
 ?>
